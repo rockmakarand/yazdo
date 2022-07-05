@@ -40,25 +40,16 @@ export default function Homed() {
       return;
     }
 
-    const storageRef = ref(
-      storage,
-      `/images/${Date.now()}${formData.image.name}`
-    );
+   
 
-    const uploadImage = uploadBytesResumable(storageRef, formData.image);
-
-    uploadImage.on
-    (
-      "state_changed",
-     
-      () => {
+   
         setFormData({
           name: "",
           description: "",
          
         });
 
-        getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+      
           const articleRef = collection(db, "doctors");
           addDoc(articleRef, {
             name: formData.name,
@@ -66,16 +57,15 @@ export default function Homed() {
            
           })
             .then(() => {
-              alert("Article added successfully", { type: "success" });
+              alert("Details added successfully", { type: "success" });
               
             })
             .catch((err) => {
-              alert("Error adding article", { type: "error" });
+              alert("Error adding Details", { type: "error" });
             });
-        });
+        
       }
-    );
-  };
+   
 
   return (
     <div className="ff" style={{ position: "fixed" }}>
