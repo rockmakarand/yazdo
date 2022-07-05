@@ -4,14 +4,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDyI5s04plPsU9SppS4HtU-F_LTdzKqBfs",
-    authDomain: "fir-e-ba421.firebaseapp.com",
-    projectId: "fir-e-ba421",
-    storageBucket: "fir-e-ba421.appspot.com",
-    messagingSenderId: "875515451744",
-    appId: "1:875515451744:web:6637ca7430c975a4f42605",
-    measurementId: "G-Q4CPQ8JP50"
-
+    apiKey: "AIzaSyAP0XQ44gF3bPMUFDnaG2PpzvEdIbRhU_4",
+  authDomain: "oooo-b8779.firebaseapp.com",
+  projectId: "oooo-b8779",
+  storageBucket: "oooo-b8779.appspot.com",
+  messagingSenderId: "1091398772227",
+  appId: "1:1091398772227:web:112704f473b49187c9d036",
+  measurementId: "G-SF3J4JVE8E"
 };
 
 const app = initializeApp(firebaseConfig);

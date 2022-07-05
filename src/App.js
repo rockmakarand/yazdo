@@ -9,6 +9,8 @@ import Signup1 from "./Signup1";
 import Homed from "./Homed";
 import {signOut} from 'firebase/auth'
 import {  auth } from "./firebase-config";
+import Patients from "./Patients";
+import Appo from "./Appo";
 
 
 
@@ -44,6 +46,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/homed" element={<Homed isAuth={isAuth} />} />
+        <Route path="/patients" element={<Patients isAuth={isAuth} />} />
+        <Route path="/appo" element={<Appo isAuth={isAuth} />} />
+
+
 
         
         <Route path="/lap" element={<Lap setIsAuth={setIsAuth} />} />

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, getDocs} from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { auth, db } from "./firebase-config";
 import { signOut } from "firebase/auth";
@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 
-export default function Articles() {
+export default function Home() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
   const signUserOut = () => {
@@ -19,17 +19,16 @@ export default function Articles() {
   };
   const [articles, setArticles] = useState([]);
   const [user] = useAuthState(auth);
+  const [postLists, setPostList] = useState([]);
+  const postsCollectionRef = collection(db, "doctors");
+
   useEffect(() => {
-    const articleRef = collection(db, "doctors");
-    const q = query(articleRef, orderBy("createdAt", "desc"));
-    onSnapshot(q, (snapshot) => {
-      const articles = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setArticles(articles);
-      console.log(articles);
-    });
+    const getPosts = async () => {
+      const data = await getDocs(postsCollectionRef);
+      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getPosts();
   }, []);
   return (
     <div>
@@ -38,12 +37,12 @@ export default function Articles() {
       <br/>
       <button onClick={signUserOut} > <b style={{fontSize:18}}>Log Out</b></button>
 
-      {articles.length === 0 ? (
+      {postLists.length === 0 ? (
         <p>No Doctors found!</p>
       ) : 
       (
        
-        articles.map(
+        postLists.map(
           ({
             id,
             name,

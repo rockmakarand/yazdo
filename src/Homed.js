@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import {  collection, addDoc } from "firebase/firestore";
+import {  collection, addDoc,  } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, db, auth } from "./firebase-config";
 //import { toast } from "react-toastify";
@@ -79,6 +79,7 @@ export default function Homed() {
       ) : (
         <>
         <button onClick={signUserOut} > <b style={{fontSize:18}}>Log Out</b></button>
+          <Link to="/patients">View Your Patients</Link>
         <h2>{user.displayName}</h2>
         <h2>{user.email}</h2>
         
